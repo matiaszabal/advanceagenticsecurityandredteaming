@@ -1,5 +1,6 @@
 import React from 'react';
-import { Shield, Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { VentenLogo } from './Header';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,12 +9,12 @@ const Footer = () => {
     programa: [
       { label: 'Módulo 1: LLM Red Teaming', href: '#modules' },
       { label: 'Módulo 2: Agentic Security', href: '#modules' },
-      { label: 'Temario Completo', href: '#' },
+      { label: 'Precios', href: '#pricing' },
       { label: 'Certificación', href: '#' },
     ],
     recursos: [
-      { label: 'OWASP Top 10 LLM', href: '#' },
-      { label: 'MITRE ATLAS', href: '#' },
+      { label: 'OWASP Top 10 LLM', href: 'https://owasp.org/www-project-top-10-for-large-language-model-applications/' },
+      { label: 'MITRE ATLAS', href: 'https://atlas.mitre.org/' },
       { label: 'Blog', href: '#' },
       { label: 'Documentación', href: '#' },
     ],
@@ -38,11 +39,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand Column */}
           <div className="lg:col-span-2">
-            <a href="#" className="flex items-center gap-3 mb-6">
-              <div className="p-2 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-                <Shield className="w-5 h-5 text-cyan-400" />
-              </div>
-              <span className="font-semibold text-white text-lg">LLM Security</span>
+            <a href="#" className="flex items-center mb-6">
+              <VentenLogo className="h-8 w-auto" />
             </a>
             <p className="text-slate-400 mb-6 max-w-sm leading-relaxed">
               Programa especializado en seguridad ofensiva para modelos de lenguaje y sistemas de IA autónoma. Posiciónate en la frontera tecnológica.
@@ -86,6 +84,8 @@ const Footer = () => {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className="text-slate-400 hover:text-white transition-colors text-sm"
                   >
                     {link.label}
@@ -115,7 +115,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-slate-800/50 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-slate-500 text-sm">
-            © {currentYear} LLM Security Academy. Todos los derechos reservados.
+            © {currentYear} Venten.ai - Todos los derechos reservados.
           </p>
           <p className="text-slate-600 text-sm">
             Diseñado para la frontera tecnológica de 2026

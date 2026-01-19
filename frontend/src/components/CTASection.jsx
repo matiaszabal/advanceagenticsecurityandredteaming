@@ -1,8 +1,19 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { courseData } from '../data/mock';
 
-const CTASection = () => {
+const CTASection = ({ onOpenForm }) => {
+  const { pricing } = courseData;
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('es-AR', {
+      style: 'decimal',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0
+    }).format(price);
+  };
+
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
@@ -25,15 +36,20 @@ const CTASection = () => {
             seguridad ofensiva en IA?
           </span>
         </h2>
-        <p className="text-lg sm:text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
+        <p className="text-lg sm:text-xl text-slate-400 mb-4 max-w-2xl mx-auto">
           Únete al programa que te posicionará en la frontera tecnológica de 2026.
-          Plazas limitadas para garantizar calidad educativa.
+        </p>
+        
+        {/* Price reminder */}
+        <p className="text-slate-500 mb-10">
+          Desde <span className="text-cyan-400 font-semibold">${formatPrice(pricing.installmentPrice)} {pricing.currency}</span> en {pricing.installments} cuotas sin interés
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button 
             size="lg" 
+            onClick={onOpenForm}
             className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-10 py-6 text-base group"
           >
             Reservar mi Plaza
@@ -42,9 +58,10 @@ const CTASection = () => {
           <Button 
             size="lg" 
             variant="outline" 
+            onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}
             className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white px-10 py-6 text-base"
           >
-            Contactar para Más Info
+            Tengo dudas
           </Button>
         </div>
 
