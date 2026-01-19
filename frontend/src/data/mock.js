@@ -8,6 +8,13 @@ export const courseData = {
     cta: "Inscríbete Ahora",
     ctaSecondary: "Ver Temario Completo"
   },
+  pricing: {
+    installments: 6,
+    installmentPrice: 34000,
+    totalPrice: 204000,
+    currency: "ARS",
+    interestFree: true
+  },
   stats: [
     { value: "40+", label: "Horas de contenido" },
     { value: "2", label: "Módulos especializados" },
@@ -145,6 +152,28 @@ export const courseData = {
     {
       question: "¿Qué certificación obtengo?",
       answer: "Al completar ambos módulos recibirás una certificación que valida tus competencias en LLM Red Teaming y Agentic Security."
+    },
+    {
+      question: "¿Cuáles son las formas de pago?",
+      answer: "Aceptamos tarjetas de crédito con hasta 6 cuotas sin interés, transferencia bancaria y MercadoPago. Consulta por descuentos para pagos de contado."
     }
   ]
+};
+
+// Helper function to save application to localStorage
+export const saveApplication = (applicationData) => {
+  const applications = JSON.parse(localStorage.getItem('course_applications') || '[]');
+  const newApplication = {
+    ...applicationData,
+    id: Date.now(),
+    submittedAt: new Date().toISOString()
+  };
+  applications.push(newApplication);
+  localStorage.setItem('course_applications', JSON.stringify(applications));
+  return newApplication;
+};
+
+// Helper function to get all applications
+export const getApplications = () => {
+  return JSON.parse(localStorage.getItem('course_applications') || '[]');
 };

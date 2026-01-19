@@ -1,10 +1,10 @@
 import React from 'react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { ArrowRight, Terminal, Shield, Zap } from 'lucide-react';
+import { ArrowRight, Terminal, Zap } from 'lucide-react';
 import { courseData } from '../data/mock';
 
-const HeroSection = () => {
+const HeroSection = ({ onOpenForm }) => {
   const { hero, stats } = courseData;
 
   return (
@@ -57,6 +57,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
             <Button 
               size="lg" 
+              onClick={onOpenForm}
               className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-semibold px-8 py-6 text-base group"
             >
               {hero.cta}
@@ -65,6 +66,7 @@ const HeroSection = () => {
             <Button 
               size="lg" 
               variant="outline" 
+              onClick={() => document.getElementById('modules')?.scrollIntoView({ behavior: 'smooth' })}
               className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-6 text-base"
             >
               <Terminal className="mr-2 w-4 h-4" />
@@ -87,18 +89,6 @@ const HeroSection = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-32 left-10 hidden lg:block">
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800/50 backdrop-blur-sm">
-            <Terminal className="w-6 h-6 text-cyan-400" />
-          </div>
-        </div>
-        <div className="absolute bottom-32 right-10 hidden lg:block">
-          <div className="p-3 rounded-xl bg-slate-900/80 border border-slate-800/50 backdrop-blur-sm">
-            <Shield className="w-6 h-6 text-emerald-400" />
           </div>
         </div>
       </div>
